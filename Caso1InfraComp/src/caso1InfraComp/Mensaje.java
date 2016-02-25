@@ -2,12 +2,18 @@ package caso1InfraComp;
 
 public class Mensaje {
 
+	/**
+	 * 
+	 */
 	private Double consulta;
 	
 	private Double respuesta;
 	
 	private Cliente origen;
-	
+	/**
+	 * método constructor
+	 * @param or
+	 */
 	public Mensaje(Cliente or){
 		consulta = null;
 		respuesta = null;
