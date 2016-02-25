@@ -2,24 +2,32 @@ package caso1InfraComp;
 
 public class Mensaje {
 
-	private Integer consulta;
+	private Double consulta;
 	
-	private Integer respuesta;
+	private Double respuesta;
 	
-	public Mensaje(){
+	private Cliente origen;
+	
+	public Mensaje(Cliente or){
 		consulta = null;
 		respuesta = null;
+		origen=or;
 	}
 	
-	public void crearConsulta (Integer nConsulta){
+	public void crearConsulta (Double nConsulta) throws InterruptedException{
 		this.consulta = nConsulta;
+		//Espera hasta que lo despierte el servidor
+		origen.reducirConsultas();
+		wait();
 	}
 	
-	public void crearREspuesta(Integer nRespuesta){
+	public void crearREspuesta(Double nRespuesta){
 		this.respuesta = nRespuesta;
+		// Despierta a los mensajes que mantiene detenido a un cliente
+		notify();
 	}
 	
-	public Integer darRespuesta(){
+	public Double darRespuesta(){
 		return respuesta;
 	}
 	

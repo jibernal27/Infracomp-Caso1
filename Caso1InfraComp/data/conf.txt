@@ -1,0 +1,4 @@
+numero de clientes:
+numero consulta clientes:
+numero de servidores:
+tamanio buffer:
