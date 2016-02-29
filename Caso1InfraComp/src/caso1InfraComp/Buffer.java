@@ -14,6 +14,10 @@ public class Buffer {
 	 */
 	private int  numClientes;
 	/**
+	 * el servidor del proyecto
+	 */
+	private Servidor servidor;
+	/**
 	 *la lista de mensajes
 	 */
 	private List<Mensaje> data;
@@ -22,9 +26,10 @@ public class Buffer {
 	 * @param capacidad
 	 * @param numClientes
 	 */
-	public Buffer(int capacidad, int numClientes){
+	public Buffer(int capacidad, int numClientes, Servidor nServidor){
 		this.capacidad = capacidad;
 		this.numClientes = numClientes;
+		this.servidor = nServidor;
 		data = new Vector<Mensaje>();
 	}
 	/**
@@ -52,6 +57,8 @@ public class Buffer {
 	public synchronized Mensaje obtener() throws Exception
 	{
 		//TODO: Hacer un criterio para que el servidor pare
+//		if(servidor.estaDespierto()){
+//		}
 		if(data.size()==0&&numClientes==0)
 		{
 			return new Mensaje(null);
