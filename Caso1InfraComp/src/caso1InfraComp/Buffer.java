@@ -13,10 +13,7 @@ public class Buffer {
 	 * la cantidad de clientes que hay en el momento
 	 */
 	private int  numClientes;
-	/**
-	 * el servidor del proyecto
-	 */
-	private Servidor servidor;
+	
 	/**
 	 *la lista de mensajes
 	 */
@@ -57,8 +54,6 @@ public class Buffer {
 	public synchronized Mensaje obtener() throws Exception
 	{
 		//TODO: Hacer un criterio para que el servidor pare
-//		if(servidor.estaDespierto()){
-//		}
 		if(data.size()==0&&numClientes==0)
 		{
 			return new Mensaje(null);

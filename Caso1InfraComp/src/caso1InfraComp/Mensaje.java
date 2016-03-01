@@ -36,5 +36,8 @@ public class Mensaje {
 	public Double darRespuesta(){
 		return respuesta;
 	}
+	public Double darConsulta(){
+		return consulta;
+	}
 	
 }
