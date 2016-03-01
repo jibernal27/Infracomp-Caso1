@@ -25,7 +25,7 @@ public class Cliente extends Thread
 	 * @return Retorna true si ya termino todas las consultas, false en caso contrario
 	 * @throws Exception Excepción heredada del Buffer
 	 */
-	public  synchronized void hacerConsulta() throws Exception
+	public  void hacerConsulta() throws Exception
 	{
 		
 		if(numConsultas>0)
@@ -56,9 +56,21 @@ public class Cliente extends Thread
 	/**
 	 * Hace que un mensaje reduzca el número de consultas 
 	 */
-	public synchronized void reducirConsultas()
+	public  void reducirConsultas()
 	{
 		numConsultas--;
+	}
+	
+	public void run()
+	{
+		try {
+			hacerConsulta();
+		} catch (Exception e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

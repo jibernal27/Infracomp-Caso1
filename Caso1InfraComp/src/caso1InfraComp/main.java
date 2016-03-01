@@ -5,17 +5,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class main
+public class Main
 {
-	public static final String datos=",/data/conf.txt";
+	public static final String datos="./data/conf.txt";
 	 
 	private int	numerDeClientes;
 	private int	numeroDeServidores;
 	private int	numeroConsultaClientes;
 	private int	tamanioBuffer;
-	public main()
+	public Main()
 	{
 		
+	}
+	
+	public static void main(String[] args)
+	{
+		Main incializar=new Main();
+		
+		try {
+			incializar.cargarDatos(Main.datos);
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void cargarDatos(String url) throws IOException
 	{
@@ -23,13 +37,32 @@ public class main
 		String line;
 		while((line = in.readLine()) != null)
 		{
-			//TODO: Terminar
+			//El número de clientes que habran. 
 		    if(line.startsWith("numero de clientes:"))
 		    {
-		    	
+		    	numerDeClientes=Integer.parseInt(line.substring("numero de clientes:".length(),line.length()));
+		    	System.out.println(numerDeClientes);
+		    }
+		    if(line.startsWith("numero consulta clientes:"))
+		    {
+		    	numeroConsultaClientes=Integer.parseInt(line.substring("numero consulta clientes:".length(),line.length()));
+		    }
+		    if(line.startsWith("numero de servidores:"))
+		    {
+		    	numeroDeServidores=Integer.parseInt(line.substring("numero de servidores:".length(),line.length()));
+		    }
+		    if(line.startsWith("tamanio buffer:"))
+		    {
+		    	tamanioBuffer=Integer.parseInt(line.substring("tamanio buffer:".length(),line.length()));
 		    }
 		}
 		in.close();
+	}
+	
+	
+	private void incializarCaso1()
+	{
+		Buffer buffer= new Buffer(tamanioBuffer, numerDeClientes);
 	}
 
 }

@@ -26,10 +26,10 @@ public class Buffer {
 	 * @param capacidad
 	 * @param numClientes
 	 */
-	public Buffer(int capacidad, int numClientes, Servidor nServidor){
+	public Buffer(int capacidad, int numClientes){
 		this.capacidad = capacidad;
 		this.numClientes = numClientes;
-		this.servidor = nServidor;
+		
 		data = new Vector<Mensaje>();
 	}
 	/**
