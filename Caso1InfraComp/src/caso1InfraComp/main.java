@@ -73,14 +73,23 @@ public class Main
 		
 		while(numServidores+numClientes>0)
 		{
-			if(numServidores>0)
-			{
-				Servidor 
-			}
+			
+			//Iniciar Primero un cliente
 			if(numClientes>0)
 			{
-				
+				Cliente nuevo= new Cliente(numeroConsultaClientes, buffer);
+				nuevo.start();
+				numClientes--;
 			}
+			
+			//Iniciar un Servidor
+			if(numServidores>0)
+			{
+				Servidor nuevo= new Servidor(buffer) ;
+				nuevo.start();
+				numServidores--;
+			}
+			
 		}
 		
 	}

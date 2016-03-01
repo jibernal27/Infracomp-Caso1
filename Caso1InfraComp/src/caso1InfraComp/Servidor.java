@@ -17,10 +17,11 @@ public class Servidor extends Thread
 	private boolean despierto;
 	
 	
-	public Servidor()
+	
+	public Servidor(Buffer buf)
 	{
 		
-		
+		buffer=buf;
 	}
 	/**
 	 * Avisa si el servidor está en espera o no.
