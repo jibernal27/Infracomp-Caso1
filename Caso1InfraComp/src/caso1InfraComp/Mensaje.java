@@ -23,14 +23,13 @@ public class Mensaje {
 	public void crearConsulta (Double nConsulta) throws InterruptedException{
 		this.consulta = nConsulta;
 		//Espera hasta que lo despierte el servidor
-		origen.reducirConsultas();
-		wait();
+		
 	}
 	
 	public void crearREspuesta(Double nRespuesta){
 		this.respuesta = nRespuesta;
 		// Despierta a los mensajes que mantiene detenido a un cliente
-		notify();
+		origen.despertar();
 	}
 	
 	public Double darRespuesta(){

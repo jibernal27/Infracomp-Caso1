@@ -24,6 +24,7 @@ public class Main
 		
 		try {
 			incializar.cargarDatos(Main.datos);
+			incializar.incializarCaso1();
 			
 			
 		} catch (IOException e) {
@@ -41,7 +42,7 @@ public class Main
 		    if(line.startsWith("numero de clientes:"))
 		    {
 		    	numerDeClientes=Integer.parseInt(line.substring("numero de clientes:".length(),line.length()));
-		    	System.out.println(numerDeClientes);
+		    	
 		    }
 		    if(line.startsWith("numero consulta clientes:"))
 		    {
@@ -70,8 +71,8 @@ public class Main
 		//Se inicializan los clientes y los servidores al tiempo
 		int numServidores=numeroDeServidores;
 		int numClientes=numerDeClientes;
-		
-		while(numServidores+numClientes>0)
+		int total=numServidores+numClientes;
+		while(total>0)
 		{
 			
 			//Iniciar Primero un cliente
@@ -80,6 +81,7 @@ public class Main
 				Cliente nuevo= new Cliente(numeroConsultaClientes, buffer);
 				nuevo.start();
 				numClientes--;
+				
 			}
 			
 			//Iniciar un Servidor
@@ -89,8 +91,12 @@ public class Main
 				nuevo.start();
 				numServidores--;
 			}
+			total=numServidores+numClientes;
+			
 			
 		}
+		
+		//System.out.println("El resultado es " +Servidor.total);
 		
 	}
 

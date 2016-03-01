@@ -25,33 +25,38 @@ public class Cliente extends Thread
 	 * @return Retorna true si ya termino todas las consultas, false en caso contrario
 	 * @throws Exception Excepción heredada del Buffer
 	 */
-	public  void hacerConsulta() throws Exception
+	public  synchronized void hacerConsulta() throws Exception
 	{
 		
-		if(numConsultas>0)
+		while(numConsultas>0)
 		{
+			
 			//Generar un número aleatorio de 1 a 50. Por el momento no se hace
 			//double num= (Math. random() * 50 + 1);
 			 Mensaje nuevo=new Mensaje(this);
 			 double num= 1;
 			 nuevo.crearConsulta(num);
+			 
         //Si no puede enviar el mensaje se queda esperando hasta que pueda en espera activa.
 			 while(!buff.enviar(nuevo))
 			 {
 				yield();
+				
 			 }
+			 reducirConsultas();
+			 wait();
+			 
 			//Si puede enviar el mensaje espera hasta tener la respuesta del mensaje
 			 //espera pasiva.  La espera esta en el enviar del mensaje
 			 
 			 //Guarda la respuesta de un mensaje. 
-			 respuesta+=nuevo.darRespuesta();
 		
+			 respuesta+=nuevo.darRespuesta();
+			 
 		}
-		else
-		{
-			//Le avisa al buffer que se va a retirar
+		
 			buff.retirarCliente();
-		}
+		
 		
 	}
 	/**
@@ -60,6 +65,13 @@ public class Cliente extends Thread
 	public  void reducirConsultas()
 	{
 		numConsultas--;
+	}
+	
+	
+	
+	public synchronized void despertar()
+	{
+		notify();
 	}
 	
 	public void run()

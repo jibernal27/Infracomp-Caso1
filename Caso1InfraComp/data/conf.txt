@@ -1,4 +1,4 @@
 numero de clientes:10
 numero consulta clientes:10
-numero de servidores:2
+numero de servidores:5
 tamanio buffer:5

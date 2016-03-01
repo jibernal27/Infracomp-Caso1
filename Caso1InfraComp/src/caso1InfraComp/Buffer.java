@@ -41,7 +41,7 @@ public class Buffer {
 		 }
 		 else{
 			 data.add(mensaje);
-			 notifyAll();
+			 
 			 return true;
 		 }
 		
@@ -53,18 +53,14 @@ public class Buffer {
 	 */
 	public synchronized Mensaje obtener() throws Exception
 	{
-		//TODO: Hacer un criterio para que el servidor pare
-		if(data.size()==0&&numClientes==0)
-		{
-			return new Mensaje(null);
-		}
+		
 		if(data.size()==0){
-			wait();
+			
 			return null;
 		}
 		else
 		{
-			return data.size()==0? null:data.remove(0);
+			return data.remove(0);
 		}
 	}
 	/**
@@ -73,5 +69,12 @@ public class Buffer {
 	public synchronized void retirarCliente()
 	{
 		numClientes--;
+		//System.out.println("Clientes restantes "+numClientes);
+		
+	}
+	
+	public boolean acabo()
+	{
+		return numClientes==0?true:false;
 	}
 }

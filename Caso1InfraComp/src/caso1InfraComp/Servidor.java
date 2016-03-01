@@ -6,7 +6,7 @@ public class Servidor extends Thread
 	/**
 	 * numero de elementos en el servidor
 	 */
-	private int total;
+	public static Double total=(double) 0;
 	/**
 	 * buffer del proyecto
 	 */
@@ -24,7 +24,7 @@ public class Servidor extends Thread
 	{
 		
 		this.buffer=buf;
-		this.despierto = false;
+		this.despierto = true;
 		
 	}
 	/**
@@ -38,23 +38,44 @@ public class Servidor extends Thread
 	 * Metodo que crea el mensaje y aunmente el num de consultas
 	 * @param mensaje
 	 */
-	public synchronized void procesarMensaje(Mensaje mensaje){
-		mensaje.crearREspuesta(mensaje.darConsulta() +1);
-		mensaje.notify();
+	public  void procesarMensaje(Mensaje mensaje){
+		Double actual=mensaje.darConsulta();
+		aumen(actual);
+		mensaje.crearREspuesta(total);
+	
 	}
-	public void run()
+	public  synchronized void aumen(Double var)
 	{
-			despierto = true;
-			Mensaje men;
-			try {
-				men = (Mensaje) buffer.obtener();
-				procesarMensaje(men);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		total+=var;
+	}
+	
+	public  void procesaeMensajes()
+	{
+		Mensaje men;
+		try {
+			while(!buffer.acabo())
+			{
+			
+			men = (Mensaje) buffer.obtener();
+			while(men==null)
+			{
+				yield();
+				men=(Mensaje) buffer.obtener();
 			}
-			despierto = false;
+			//System.out.println("Proceso un mensaje");
+			procesarMensaje(men);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
+	}
+	public void run() 
+	{
+		System.out.println("Inicio");
+		procesaeMensajes();
+		System.out.println("Acabo");
 		
 	}
 	
