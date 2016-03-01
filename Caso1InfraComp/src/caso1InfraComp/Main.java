@@ -34,6 +34,7 @@ public class Main
 	}
 	public void cargarDatos(String url) throws IOException
 	{
+		System.gc();
 		BufferedReader in = new BufferedReader(new FileReader(url));
 		String line;
 		while((line = in.readLine()) != null)
@@ -95,12 +96,13 @@ public class Main
 			
 			
 		}
-		while(!buffer.acabo())
+		//Espacio para esperar a que todos los Threads acaben. 
+		while(buffer.acabo()!=1)
 		{
-			
-		}
-		System.out.println("El resultado es " +Servidor.total);
 		
+		}
+		//Imprime la respuesta
+		System.out.println("El resultado es " +Servidor.aumen((double) 0));
 	}
 
 }

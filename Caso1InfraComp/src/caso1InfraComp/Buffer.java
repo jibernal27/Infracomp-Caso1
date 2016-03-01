@@ -69,16 +69,33 @@ public class Buffer {
 	public synchronized void retirarCliente()
 	{
 		numClientes--;
-		System.out.println("Clientes restantes "+numClientes);
+		
 		
 	}
 	
-	public  synchronized boolean acabo()
+	/**
+	 * Pureba si el buffer ya no tiene más usuaos 
+	 * Retorna 1 si no existen más clientes y además es buffer esta vacio
+	 * 2 Si todos los clientes ya han sido atentidos
+	 * 3 Si no hay más clientes que atender pero aun hay mensajes que sacar
+	 * 0 en caso contraro
+	 * @return
+	 */
+	public  synchronized int acabo()
 	{
-		if(numClientes==0&&data.size()==0)
+		 if(numClientes==0&&data.size()!=0)
 		{
-			return true;
+			return 3;
 		}
-		return false;
+		 else if(numClientes==0&&data.size()==0)
+		{
+			return 1;
+		}
+		
+		else if(numClientes==0)
+		{
+			return 2;
+		}
+		return 0;
 	}
 }
