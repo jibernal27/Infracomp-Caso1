@@ -69,12 +69,16 @@ public class Buffer {
 	public synchronized void retirarCliente()
 	{
 		numClientes--;
-		//System.out.println("Clientes restantes "+numClientes);
+		System.out.println("Clientes restantes "+numClientes);
 		
 	}
 	
-	public boolean acabo()
+	public  synchronized boolean acabo()
 	{
-		return numClientes==0?true:false;
+		if(numClientes==0&&data.size()==0)
+		{
+			return true;
+		}
+		return false;
 	}
 }

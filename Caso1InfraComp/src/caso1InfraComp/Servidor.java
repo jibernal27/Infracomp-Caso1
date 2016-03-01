@@ -49,7 +49,7 @@ public class Servidor extends Thread
 		total+=var;
 	}
 	
-	public  void procesaeMensajes()
+	public   void procesaeMensajes()
 	{
 		Mensaje men;
 		try {
@@ -57,13 +57,18 @@ public class Servidor extends Thread
 			{
 			
 			men = (Mensaje) buffer.obtener();
-			while(men==null)
+			while(men==null&&!buffer.acabo())
 			{
 				yield();
 				men=(Mensaje) buffer.obtener();
 			}
 			//System.out.println("Proceso un mensaje");
-			procesarMensaje(men);
+			if(men!=null)
+			{
+				procesarMensaje(men);
+			}
+			
+			
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -71,6 +76,8 @@ public class Servidor extends Thread
 		} 
 		
 	}
+	
+	
 	public void run() 
 	{
 		System.out.println("Inicio");

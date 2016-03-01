@@ -95,8 +95,11 @@ public class Main
 			
 			
 		}
-		
-		//System.out.println("El resultado es " +Servidor.total);
+		while(!buffer.acabo())
+		{
+			
+		}
+		System.out.println("El resultado es " +Servidor.total);
 		
 	}
 
