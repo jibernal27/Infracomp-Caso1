@@ -30,9 +30,10 @@ public class Cliente extends Thread
 		
 		if(numConsultas>0)
 		{
-			//Generar un número aleatorio de 1 a 50
-			double num= (Math. random() * 50 + 1);
+			//Generar un número aleatorio de 1 a 50. Por el momento no se hace
+			//double num= (Math. random() * 50 + 1);
 			 Mensaje nuevo=new Mensaje(this);
+			 double num= 1;
 			 nuevo.crearConsulta(num);
         //Si no puede enviar el mensaje se queda esperando hasta que pueda en espera activa.
 			 while(!buff.enviar(nuevo))

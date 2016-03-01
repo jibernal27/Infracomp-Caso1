@@ -62,7 +62,27 @@ public class Main
 	
 	private void incializarCaso1()
 	{
+		//Inicialización de Buffer
 		Buffer buffer= new Buffer(tamanioBuffer, numerDeClientes);
+		
+		//Para hacer pruebas se pondra un valor conocido de consultas de cada cliente
+		
+		//Se inicializan los clientes y los servidores al tiempo
+		int numServidores=numeroDeServidores;
+		int numClientes=numerDeClientes;
+		
+		while(numServidores+numClientes>0)
+		{
+			if(numServidores>0)
+			{
+				Servidor 
+			}
+			if(numClientes>0)
+			{
+				
+			}
+		}
+		
 	}
 
 }
